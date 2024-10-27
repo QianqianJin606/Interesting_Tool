@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>语音转文本</title>
+</head>
+<body>
+    <textarea id="result" rows="8" cols="80"></textarea> <br>
+    <select id="language">
+        <option value="zh-CN">中文</option>
+        <option value="en-US">英文</option>
+        <option value="en-US">美语</option>
+
+    </select>
+    <button id="start">开始</button>
+    <button id="stop">停止</button>
+    <button id="save">保存文本</button>
+
+    <script type="text/javascript">
+        var startButton = document.getElementById('start');
+        var stopButton = document.getElementById('stop');
+        var saveButton = document.getElementById('save');
+        var resultElement = document.getElementById('result');
+        var languageSelect = document.getElementById('language');
+
+        // 全局变量，用于存储累计的识别文本
+        var finalTranscript = '';
+
+        // 创建一个 webkitSpeechRecognition 实例
+        var recognition = new webkitSpeechRecognition();
+        recognition.continuous = true; // 允许持续语音识别
+        recognition.interimResults = true; // 启用中间结果显示
+
+        // 根据用户选择的语言设置语音识别的语言
+        function updateLanguage() {
+            recognition.lang = languageSelect.value;
+        }
+
+        // 监听语言选择器的变化
+        languageSelect.addEventListener('change', updateLanguage);
+        updateLanguage(); // 初始化时设置默认语言
+
+        // 点击“开始”按钮时启动语音识别
+        startButton.addEventListener('click', () => {
+            finalTranscript = ''; // 每次开始前清空之前的文本
+            resultElement.value = ''; // 清空文本框
+            recognition.start(); // 开始语音识别
+            console.log('开始语音识别，当前语言：' + recognition.lang);
+        });
+
+        // 点击“停止”按钮时停止语音识别
+        stopButton.addEventListener('click', () => {
+            recognition.stop(); // 停止语音识别
+            console.log('停止语音识别');
+        });
+
+        // 处理语音识别的结果
+        recognition.addEventListener('result', (event) => {
+            let interimTranscript = ''; // 用于存储中间结果
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                // 如果是最终结果
+                if (event.results[i].isFinal) {
+                    finalTranscript += event.results[i][0].transcript.trim() + ','; // 追加最终结果并加上句号
+                } else {
+                    interimTranscript += event.results[i][0].transcript; // 累加中间结果
+                }
+            }
+            resultElement.value = finalTranscript + interimTranscript; // 显示最终和中间结果
+        });
+
+        // 如果识别结束且未手动停止，自动重新启动识别（实现持续识别）
+        recognition.addEventListener('end', () => {
+            if (finalTranscript) {
+                console.log('识别结束，重新启动...');
+                recognition.start(); // 重新启动识别
+            }
+        });
+
+        // 点击“保存文本”按钮时保存文本为文件
+        saveButton.addEventListener('click', () => {
+            const text = resultElement.value; // 获取文本区域的内容
+            const blob = new Blob([text], { type: 'text/plain' }); // 创建一个 Blob 对象
+            const url = URL.createObjectURL(blob); // 创建一个 URL 对象
+
+            // 创建一个隐藏的下载链接
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = '语音转文本.txt'; // 设置文件名
+            document.body.appendChild(a);
+            a.click(); // 触发下载
+            document.body.removeChild(a); // 移除下载链接
+            URL.revokeObjectURL(url); // 释放 URL 对象
+        });
+    </script>
+</body>
+</html>
