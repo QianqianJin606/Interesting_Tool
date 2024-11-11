@@ -7,6 +7,7 @@
 using tool: VOICE_TO_TEXT_v3_savetxt_juhao.html
 (output: Original_text.txt)
    ![VOICE TO TEXT HTML USER INTERFACE](./Recordingtool.jpg)
+  
 Figure 1 Voice recording to text directly
 
 
