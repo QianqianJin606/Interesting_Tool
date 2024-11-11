@@ -8,7 +8,8 @@ using tool: VOICE_TO_TEXT_v3_savetxt_juhao.html
 (output: Original_text.txt)
 
 2. The second tool helps to extract the word, converting voice to text.
-3. In the same tool, applying the OPENAI API, we summarizes and rephrases the whole paragraph.
+3. Also, since the text file extracted from recording video does not contain any comma, so we add the comma based on some important words.
+4. In the same tool, applying the OPENAI API, we summarizes and rephrases the whole paragraph.
 using tool: M4P.ipynb
 (output: optimized_text.txt)
 
