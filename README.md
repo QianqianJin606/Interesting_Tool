@@ -1,6 +1,6 @@
 # Interesting_Tool
 
-### The first tool achieves the function of transferring the voice to videos.
+### The first tool achieves the function of transferring the voice to text.
 
 
 - The first tool helps to record the voice. it is available that there are other recording files.
