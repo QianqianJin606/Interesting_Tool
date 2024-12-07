@@ -15,18 +15,22 @@ Figure 1 Voice recording to text directly
 - The second tool helps to extract the word, converting voice to text
 
    ![Original text extracted from recording file](./original.jpg)
-Figure 2 Original text extracted from the recording file
-
+Figure 2.1 Original text extracted from the recording file (Chinese)
+   ![Original text extracted from recording file](./images/Figure2_En.jpg)
+Figure 2.2 Original text extracted from the recording file (English)
 
 - Also, since the text file extracted from the recording video does not contain any commas. So, we added the commas based on some important words.
    
    ![Add commas to divide sentences based on keywords](./commas.jpg)
-Figure 3 Add commas to divide sentences based on keywords
-
+Figure 3.1 Add commas to divide sentences based on keywords (Chinese)
+   ![Original text extracted from recording file](./images/Figure3_En.jpg)
+Figure 3.2 Original text extracted from the recording file (English)
 
 - In the same tool, applying the OPENAI API, we summarize and rephrase the whole paragraph.
 using tool: M4P.ipynb
 (output: optimized_text.txt)
 
    ![Output after using rephrase based on OPENAI API](./final_results.jpg)
-Figure 4 Output after using rephrase based on OPENAI API
+Figure 4.1 Output after using rephrase based on OPENAI API (Chinese)
+   ![Original text extracted from recording file](./images/Figure4_En.jpg)
+Figure 4.2 Original text extracted from the recording file (English)
