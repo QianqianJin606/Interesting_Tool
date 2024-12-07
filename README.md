@@ -4,6 +4,7 @@
 
 
 - The first tool helps to record the voice. it is available that there are other recording files.
+- This system support two languages using, Chinese and English, here we show an example of using Chinese, but I will translate them in English.
 using tool: VOICE_TO_TEXT_v3_savetxt_juhao.html
 (output: Original_text.txt)
    ![VOICE TO TEXT HTML USER INTERFACE](./Recordingtool.jpg)
